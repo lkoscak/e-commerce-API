@@ -24,7 +24,7 @@ const { authenticateUser } = require("./middleware/authentication");
 const app = express();
 
 // middleware setup
-app.use(morgan("tiny"));
+//app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.static("public"));
@@ -44,10 +44,6 @@ const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const orderRoutes = require("./routes/orderRoutes");
-
-app.get("/", (req, res) => {
-	res.status(200).send("E-commerce-API");
-});
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", authenticateUser, userRoutes);
